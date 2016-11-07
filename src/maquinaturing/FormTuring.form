@@ -155,7 +155,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblEntrada" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtxtRegras" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtxtRegras" min="-2" pref="20" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -188,11 +188,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtAlfabetoMt">
       <Properties>
+        <Property name="text" type="java.lang.String" value="a,b,c"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtAlfabetoFt">
       <Properties>
+        <Property name="text" type="java.lang.String" value="a,b,c,x"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
@@ -203,11 +205,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtEstados">
       <Properties>
+        <Property name="text" type="java.lang.String" value="q0,q1,q2"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtRegras">
       <Properties>
+        <Property name="text" type="java.lang.String" value="q0/a/b/q1/R,q1/b/c/q2/L,q2/c/a/q0/H"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
@@ -244,6 +248,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtEntrada">
       <Properties>
+        <Property name="text" type="java.lang.String" value="a/b/c"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>

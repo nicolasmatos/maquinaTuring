@@ -94,14 +94,18 @@ public class FormTuring extends javax.swing.JFrame {
 
         lblTransicoes.setText("Estados");
 
+        jtxtAlfabetoMt.setText("a,b,c");
         jtxtAlfabetoMt.setToolTipText("");
 
+        jtxtAlfabetoFt.setText("a,b,c,x");
         jtxtAlfabetoFt.setToolTipText("");
 
         lblEntrada.setText("Regras");
 
+        jtxtEstados.setText("q0,q1,q2");
         jtxtEstados.setToolTipText("");
 
+        jtxtRegras.setText("q0/a/b/q1/R,q1/b/c/q2/L,q2/c/a/q0/H");
         jtxtRegras.setToolTipText("");
 
         jbtExecutar.setBackground(new java.awt.Color(245, 245, 245));
@@ -118,6 +122,7 @@ public class FormTuring extends javax.swing.JFrame {
 
         jLabel3.setText("Entrada");
 
+        jtxtEntrada.setText("a/b/c");
         jtxtEntrada.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,7 +179,7 @@ public class FormTuring extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblEntrada)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtRegras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtxtRegras, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,7 +204,7 @@ public class FormTuring extends javax.swing.JFrame {
     private void jbtExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExecutarActionPerformed
         jtxaResultado.setText("");
         MaquinaTuring mt  = new MaquinaTuring(jtxtEstados.getText(), jtxtAlfabetoMt.getText(), jtxtAlfabetoFt.getText(), jtxtRegras.getText(), jtxtEntrada.getText());
-        //jtxaResultado.setText(mt.verificacao());
+        jtxaResultado.setText(mt.verificacao());
         
     }//GEN-LAST:event_jbtExecutarActionPerformed
 
