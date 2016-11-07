@@ -45,8 +45,10 @@ public class MaquinaTuring {
                 regras.add(regra);
                 regras.add("$");
             }
-            regras.add("$");
+            if (i + 1 < arrayRegras.length) regras.add("$");
         }
+        
+        regras.remove(regras.size() - 1);
         
         for (int i = 0; i < regras.size(); i+=11) {
             for (int j = 0; j < arrayEstados.length; j++) {
@@ -85,24 +87,24 @@ public class MaquinaTuring {
         
         String[] arrayEntrada = txtEntrada.split("/");
         
-        fita.add("b");
+        fita.add("!");
         
         for (int i = 0; i < arrayEstados.length; i++) {
             estados.add(arrayEstados[i]);
             fita.add((i + 1) + "");
-            fita.add("$");
+            if (i + 1 < arrayEstados.length) fita.add("$");
         }
         fita.add("#");
         for (int i = 0; i < arrayAlfabetoMt.length; i++) {
             alfabetoMt.add(arrayAlfabetoMt[i]);
             fita.add((i + 1) + "");
-            fita.add("$");
+            if (i + 1 < arrayAlfabetoMt.length) fita.add("$");
         }
         fita.add("#");
         for (int i = 0; i < arrayAlfabetoFt.length; i++) {
             alfabetoFt.add(arrayAlfabetoFt[i]);
             fita.add((i + 1) + "");
-            fita.add("$");
+            if (i + 1 < arrayAlfabetoFt.length) fita.add("$");
         }
         fita.add("#");   
         for (int i = 0; i < regras.size(); i++) {
@@ -113,13 +115,13 @@ public class MaquinaTuring {
             for (int j = 0; j < arrayAlfabetoMt.length; j++) {
                 if (arrayEntrada[i].equals(arrayAlfabetoMt[j])) {
                     fita.add(j + 1 + "");
-                    fita.add("$");
+                    if (i + 1 < arrayAlfabetoMt.length) fita.add("$");
                 }
             }
         }
         fita.add("#");
         
-        fita.add("b");
+        fita.add("!");
     }
     
     public String verificacao() {
