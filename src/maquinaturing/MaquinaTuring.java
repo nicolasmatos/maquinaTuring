@@ -8,13 +8,13 @@ public class MaquinaTuring {
     private String txtAlfabetoFt;
     private String txtRegras;
     private String txtEntrada;
+    private String estadoAtual = new String();
     
     private ArrayList<String> estados;
     private ArrayList<String> alfabetoMt;
     private ArrayList<String> alfabetoFt;
     private ArrayList<String> regras;
     private ArrayList<String> entrada;
-    
     private ArrayList<String> fita;
 
     public MaquinaTuring() { }
@@ -114,6 +114,7 @@ public class MaquinaTuring {
         for (int i = 0; i < arrayEntrada.length; i++) {
             for (int j = 0; j < arrayAlfabetoMt.length; j++) {
                 if (arrayEntrada[i].equals(arrayAlfabetoMt[j])) {
+                    entrada.add(j + 1 + "");
                     fita.add(j + 1 + "");
                     if (i + 1 < arrayAlfabetoMt.length) fita.add("$");
                 }
@@ -122,6 +123,12 @@ public class MaquinaTuring {
         fita.add("#");
         
         fita.add("!");
+        
+        for (int j = 0; j < arrayEstados.length; j++) {
+            if (estadoAtual.equals(arrayEstados[j])) {
+                estadoAtual = j + 1 + "";
+            }
+        }
     }
     
     public String verificacao() {
@@ -131,7 +138,43 @@ public class MaquinaTuring {
         for (int i = 0; i < fita.size(); i++) {
             result = result + fita.get(i);
         }
+        int x = 0;
+        while (x < entrada.size()) {
+            int cont = 0, posTrans = 0;
+            for (int j = 0; j < fita.size(); j++) {
+                if (fita.get(j).equals("#")) {
+                    cont ++;
+                }
+                if (cont == 3) {
+                    posTrans = j + 1;
+                    j = fita.size();
+                }
+            }
+            for (int j = posTrans; j < fita.size(); j+=11) {
+                if (estadoAtual == fita.get(j)) {
+                    if (entrada.get(x) == fita.get(j + 1)) {
+                        entrada.add(x, fita.get(j + 2));
+                        entrada.remove(x + 1);
+                        estadoAtual = fita.get(j + 3);
+                        if (fita.get(j + 4).equals("1")) {
+                            x--;
+                        }
+                        if (fita.get(j + 4).equals("2")) {
+                            x++;
+                        }
+                        if (fita.get(j + 4).equals("3")) {
+                            j = fita.size();
+                            x = entrada.size();
+                        }
+                    }
+                }
+            }
+        }
         
         return result;
+    }
+
+    public void setEstadoAtual(String estadoAtual) {
+        this.estadoAtual = estadoAtual;
     }
 }

@@ -100,20 +100,22 @@
                   <Component id="jbtExecutar" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jtxtEntrada" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtxtRegras" alignment="0" pref="250" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblAlfabeto" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtxtAlfabetoMt" min="-2" pref="116" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jtxtEstados" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblAlfabeto" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtxtAlfabetoMt" alignment="0" pref="116" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="lblQtdEstados" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtxtAlfabetoFt" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="jtxtAlfabetoFt" alignment="0" pref="124" max="32767" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtxtEstadoInicial" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtxtEstados" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jtxtRegras" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -141,9 +143,15 @@
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblTransicoes" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTransicoes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtxtEstados" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtxtEstados" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtxtEstadoInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblEntrada" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -241,6 +249,18 @@
     <Component class="javax.swing.JTextField" name="jtxtEntrada">
       <Properties>
         <Property name="text" type="java.lang.String" value="a/b/c"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Estado Inicial"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtxtEstadoInicial">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="q0"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>

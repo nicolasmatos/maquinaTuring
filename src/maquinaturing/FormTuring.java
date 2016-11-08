@@ -40,6 +40,8 @@ public class FormTuring extends javax.swing.JFrame {
         jtxaResultado = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jtxtEntrada = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jtxtEstadoInicial = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +127,12 @@ public class FormTuring extends javax.swing.JFrame {
         jtxtEntrada.setText("a/b/c");
         jtxtEntrada.setToolTipText("");
 
+        jLabel4.setText("Estado Inicial");
+        jLabel4.setToolTipText("");
+
+        jtxtEstadoInicial.setText("q0");
+        jtxtEstadoInicial.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,17 +145,19 @@ public class FormTuring extends javax.swing.JFrame {
                     .addComponent(jbtExecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jtxtEntrada, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblAlfabeto)
-                                .addComponent(jtxtAlfabetoMt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblQtdEstados)
-                                .addComponent(jtxtAlfabetoFt, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jtxtEstados, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jtxtRegras, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(jtxtRegras, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jtxtEstados, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblAlfabeto, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jtxtAlfabetoMt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblQtdEstados)
+                                .addComponent(jtxtAlfabetoFt, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addComponent(jtxtEstadoInicial)))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -168,9 +178,13 @@ public class FormTuring extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jtxtAlfabetoFt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTransicoes)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTransicoes)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtxtEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtEstadoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblEntrada)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -200,7 +214,7 @@ public class FormTuring extends javax.swing.JFrame {
         jtxaResultado.setText("");
         MaquinaTuring mt  = new MaquinaTuring(jtxtEstados.getText(), jtxtAlfabetoMt.getText(), jtxtAlfabetoFt.getText(), jtxtRegras.getText(), jtxtEntrada.getText());
         jtxaResultado.setText(mt.verificacao());
-        
+        mt.setEstadoAtual(jtxtEstadoInicial.getText());
     }//GEN-LAST:event_jbtExecutarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -209,6 +223,7 @@ public class FormTuring extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private java.awt.Button jbtExecutar;
@@ -216,6 +231,7 @@ public class FormTuring extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtAlfabetoFt;
     private javax.swing.JTextField jtxtAlfabetoMt;
     private javax.swing.JTextField jtxtEntrada;
+    private javax.swing.JTextField jtxtEstadoInicial;
     private javax.swing.JTextField jtxtEstados;
     private javax.swing.JTextField jtxtRegras;
     private java.awt.Label label1;
