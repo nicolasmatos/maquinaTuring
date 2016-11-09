@@ -120,7 +120,6 @@ public class MaquinaTuring {
                 }
             }
         }
-        fita.add("#");
         
         fita.add("!");
         
@@ -135,40 +134,60 @@ public class MaquinaTuring {
         String result = "";
         this.setValores();
         
-        for (int i = 0; i < fita.size(); i++) {
-            result = result + fita.get(i);
-        }
-        int x = 0;
-        while (x < entrada.size()) {
-            int cont = 0, posTrans = 0;
-            for (int j = 0; j < fita.size(); j++) {
-                if (fita.get(j).equals("#")) {
-                    cont ++;
-                }
-                if (cont == 3) {
-                    posTrans = j + 1;
-                    j = fita.size();
-                }
+        int cont = 0, posTrans = 0;
+        for (int j = 0; j < fita.size(); j++) {
+            if (fita.get(j).equals("#")) {
+                cont ++;
             }
+            if (cont == 3) {
+                posTrans = j + 1;
+                j = fita.size();
+            }
+        }
+        
+        int x = 0;
+        String estadoAnt = "";
+        while (x < entrada.size()) {
             for (int j = posTrans; j < fita.size(); j+=11) {
-                if (estadoAtual == fita.get(j)) {
-                    if (entrada.get(x) == fita.get(j + 1)) {
-                        entrada.add(x, fita.get(j + 2));
+                if (estadoAtual.equals(fita.get(j))) {
+                    if (entrada.get(x).equals(fita.get(j + 2))) {
+                        entrada.add(x, fita.get(j + 4));
                         entrada.remove(x + 1);
-                        estadoAtual = fita.get(j + 3);
-                        if (fita.get(j + 4).equals("1")) {
+                        estadoAnt = estadoAtual;
+                        estadoAtual = fita.get(j + 6);
+                        String palavra = "";
+                        System.out.println("(" + estadoAnt + ", " + fita.get(j + 2) + ")->(" + fita.get(j + 4) + ", " + estadoAtual + ", " + fita.get(j + 8) + ")");
+                        for(int i = 0; i < entrada.size(); i++) {
+                            palavra = palavra + entrada.get(i);
+                        }
+                        System.out.println(palavra);
+                        
+                        if (fita.get(j + 8).equals("1")) {
                             x--;
                         }
-                        if (fita.get(j + 4).equals("2")) {
+                        if (fita.get(j + 8).equals("2")) {
                             x++;
                         }
-                        if (fita.get(j + 4).equals("3")) {
+                        if (fita.get(j + 8).equals("3")) {
                             j = fita.size();
                             x = entrada.size();
                         }
+                        
+                        j = fita.size();
                     }
                 }
             }
+        }
+        
+        fita.add(fita.size() - 1, "#");
+        
+        for (int i = 0; i < entrada.size(); i++) {
+            fita.add(fita.size() - 1, entrada.get(i));
+            if (i + 1 < entrada.size()) fita.add(fita.size() - 1, "$");
+        }
+            
+        for (int i = 0; i < fita.size(); i++) {
+            result = result + fita.get(i);
         }
         
         return result;

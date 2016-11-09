@@ -3,6 +3,6 @@ Estados: q0,q1,q2,q3,q4
 AlfabetoMt: a,b
 AlfabetoFt: a,b,x,y,!,$,#
 Regras: q0/a/x/q1/R,q0/y/y/q3/R,q1/y/y/q1/R,q1/a/a/q1/R,q1/b/y/q2/L,q2/y/y/q2/L,q2/a/a/q2/L,q2/x/x/q0/R,q3/y/y/q3/R,q3/!/!/q4/H
-Entrada: a/b/c
+Entrada: a/a/b/b
 
 

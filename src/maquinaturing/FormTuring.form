@@ -211,7 +211,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtRegras">
       <Properties>
-        <Property name="text" type="java.lang.String" value="q0/a/b/q1/R,q1/b/c/q2/L,q2/c/a/q0/H"/>
+        <Property name="text" type="java.lang.String" value="q0/a/b/q1/R,q1/b/c/q2/R,q2/c/a/q0/H"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>

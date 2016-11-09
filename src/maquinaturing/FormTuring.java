@@ -107,7 +107,7 @@ public class FormTuring extends javax.swing.JFrame {
         jtxtEstados.setText("q0,q1,q2");
         jtxtEstados.setToolTipText("");
 
-        jtxtRegras.setText("q0/a/b/q1/R,q1/b/c/q2/L,q2/c/a/q0/H");
+        jtxtRegras.setText("q0/a/b/q1/R,q1/b/c/q2/R,q2/c/a/q0/H");
         jtxtRegras.setToolTipText("");
 
         jbtExecutar.setBackground(new java.awt.Color(245, 245, 245));
@@ -213,8 +213,9 @@ public class FormTuring extends javax.swing.JFrame {
     private void jbtExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExecutarActionPerformed
         jtxaResultado.setText("");
         MaquinaTuring mt  = new MaquinaTuring(jtxtEstados.getText(), jtxtAlfabetoMt.getText(), jtxtAlfabetoFt.getText(), jtxtRegras.getText(), jtxtEntrada.getText());
-        jtxaResultado.setText(mt.verificacao());
         mt.setEstadoAtual(jtxtEstadoInicial.getText());
+        jtxaResultado.setText(mt.verificacao());
+        
     }//GEN-LAST:event_jbtExecutarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
