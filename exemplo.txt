@@ -1,8 +1,16 @@
 Máquina de Turing:
 Estados: q0,q1,q2,q3,q4
 AlfabetoMt: a,b
-AlfabetoFt: a,b,x,y,!,$,#
+AlfabetoFt: a,b,x,y
 Regras: q0/a/x/q1/R,q0/y/y/q3/R,q1/y/y/q1/R,q1/a/a/q1/R,q1/b/y/q2/L,q2/y/y/q2/L,q2/a/a/q2/L,q2/x/x/q0/R,q3/y/y/q3/R,q3/!/!/q4/H
 Entrada: a/a/b/b
+
+Máquina de Turing:
+Estados: q0,q1,q2
+AlfabetoMt: a,b,c
+AlfabetoFt: a,b,c,x
+Regras: q0/a/b/q1/R,q1/b/c/q2/R,q2/c/a/q0/H
+Entrada: a/b/c
+
 
 

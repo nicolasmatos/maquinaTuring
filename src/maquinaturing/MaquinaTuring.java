@@ -15,7 +15,13 @@ public class MaquinaTuring {
     private ArrayList<String> alfabetoFt;
     private ArrayList<String> regras;
     private ArrayList<String> entrada;
+    private ArrayList<String> saida;
     private ArrayList<String> fita;
+    private String[] arrayEstados;
+    private String[] arrayAlfabetoMt;
+    private String[] arrayAlfabetoFt;
+    private String[] arrayRegras;
+    private String[] arrayEntrada;
 
     public MaquinaTuring() { }
 
@@ -31,14 +37,15 @@ public class MaquinaTuring {
         alfabetoFt = new ArrayList();
         regras = new ArrayList();
         entrada = new ArrayList();
+        saida = new ArrayList();
         fita = new ArrayList();
     }
     
     public void setValores() {
-        String[] arrayEstados = txtEstados.split(",");
-        String[] arrayAlfabetoMt = txtAlfabetoMt.split(",");
-        String[] arrayAlfabetoFt = txtAlfabetoFt.split(",");
-        String[] arrayRegras = txtRegras.split(",");
+        arrayEstados = txtEstados.split(",");
+        arrayAlfabetoMt = txtAlfabetoMt.split(",");
+        arrayAlfabetoFt = txtAlfabetoFt.split(",");
+        arrayRegras = txtRegras.split(",");
         
         for (int i = 0; i < arrayRegras.length; i++) {
             for (String regra : arrayRegras[i].split("/")) {
@@ -61,12 +68,12 @@ public class MaquinaTuring {
                     regras.remove(regras.get(i + 7));
                 }
             }
-            for (int j = 0; j < arrayAlfabetoMt.length; j++) {
-                if ((regras.get(i + 2)).equals(arrayAlfabetoMt[j])) {
+            for (int j = 0; j < arrayAlfabetoFt.length; j++) {
+                if ((regras.get(i + 2)).equals(arrayAlfabetoFt[j])) {
                     regras.add(i + 2, j + 1 + "");
                     regras.remove(regras.get(i + 3));
                 }
-                if ((regras.get(i + 4)).equals(arrayAlfabetoMt[j])) {
+                if ((regras.get(i + 4)).equals(arrayAlfabetoFt[j])) {
                     regras.add(i + 4, j + 1 + "");
                     regras.remove(regras.get(i + 5));
                 }
@@ -85,27 +92,24 @@ public class MaquinaTuring {
             }
         }
         
-        String[] arrayEntrada = txtEntrada.split("/");
+        arrayEntrada = txtEntrada.split("/");
         
         fita.add("!");
         
         for (int i = 0; i < arrayEstados.length; i++) {
             estados.add(arrayEstados[i]);
-            fita.add((i + 1) + "");
-            if (i + 1 < arrayEstados.length) fita.add("$");
         }
+        fita.add(arrayEstados.length + "");
         fita.add("#");
         for (int i = 0; i < arrayAlfabetoMt.length; i++) {
             alfabetoMt.add(arrayAlfabetoMt[i]);
-            fita.add((i + 1) + "");
-            if (i + 1 < arrayAlfabetoMt.length) fita.add("$");
         }
+        fita.add(arrayAlfabetoMt.length + "");
         fita.add("#");
         for (int i = 0; i < arrayAlfabetoFt.length; i++) {
             alfabetoFt.add(arrayAlfabetoFt[i]);
-            fita.add((i + 1) + "");
-            if (i + 1 < arrayAlfabetoFt.length) fita.add("$");
         }
+        fita.add(arrayAlfabetoFt.length + "");
         fita.add("#");   
         for (int i = 0; i < regras.size(); i++) {
             fita.add(regras.get(i));
@@ -116,7 +120,7 @@ public class MaquinaTuring {
                 if (arrayEntrada[i].equals(arrayAlfabetoMt[j])) {
                     entrada.add(j + 1 + "");
                     fita.add(j + 1 + "");
-                    if (i + 1 < arrayAlfabetoMt.length) fita.add("$");
+                    if (i + 1 < arrayEntrada.length) fita.add("$");
                 }
             }
         }
@@ -128,6 +132,20 @@ public class MaquinaTuring {
                 estadoAtual = j + 1 + "";
             }
         }
+    }
+    
+    public String converterExecucao(String estadoAnt, String leitura, String escrita, String estadoAtual, String direcao) {
+        String result = "";
+        result = "(" + estados.get(Integer.parseInt(estadoAnt) - 1) + ", " + alfabetoFt.get(Integer.parseInt(leitura) - 1) + ")->(" + alfabetoFt.get(Integer.parseInt(escrita) - 1) + ", " + estados.get(Integer.parseInt(estadoAtual) - 1) + ", ";
+        
+        if (direcao.equals("1"))
+            result = result + "L)";
+        else if (direcao.equals("2"))
+            result = result + "R)";
+        else
+            result = result + "H)";
+        
+        return result;
     }
     
     public String verificacao() {
@@ -145,20 +163,26 @@ public class MaquinaTuring {
             }
         }
         
-        int x = 0;
+        saida = (ArrayList<String>) entrada.clone();
+        saida.add("!");
+        
+        int x = 0, ctrl = 0;
         String estadoAnt = "";
-        while (x < entrada.size()) {
+        while (x < saida.size()) {
             for (int j = posTrans; j < fita.size(); j+=11) {
                 if (estadoAtual.equals(fita.get(j))) {
-                    if (entrada.get(x).equals(fita.get(j + 2))) {
-                        entrada.add(x, fita.get(j + 4));
-                        entrada.remove(x + 1);
+                    if (saida.get(x).equals(fita.get(j + 2))) {
+                        saida.add(x, fita.get(j + 4));
+                        saida.remove(x + 1);
                         estadoAnt = estadoAtual;
                         estadoAtual = fita.get(j + 6);
+                        
+                        System.out.println(converterExecucao(estadoAnt, fita.get(j + 2), fita.get(j + 4), estadoAtual, fita.get(j + 8)));
+                        
                         String palavra = "";
-                        System.out.println("(" + estadoAnt + ", " + fita.get(j + 2) + ")->(" + fita.get(j + 4) + ", " + estadoAtual + ", " + fita.get(j + 8) + ")");
-                        for(int i = 0; i < entrada.size(); i++) {
-                            palavra = palavra + entrada.get(i);
+                        
+                        for(int i = 0; i < saida.size() - 1; i++) {
+                            palavra = palavra + alfabetoFt.get(Integer.parseInt(saida.get(i)) - 1);
                         }
                         System.out.println(palavra);
                         
@@ -168,9 +192,14 @@ public class MaquinaTuring {
                         if (fita.get(j + 8).equals("2")) {
                             x++;
                         }
+                        
                         if (fita.get(j + 8).equals("3")) {
+                            if (saida.get(x).equals("!")) {
+                                System.out.println("Ultima");
+                            }
+                            
                             j = fita.size();
-                            x = entrada.size();
+                            x = saida.size();
                         }
                         
                         j = fita.size();
@@ -181,15 +210,50 @@ public class MaquinaTuring {
         
         fita.add(fita.size() - 1, "#");
         
-        for (int i = 0; i < entrada.size(); i++) {
-            fita.add(fita.size() - 1, entrada.get(i));
-            if (i + 1 < entrada.size()) fita.add(fita.size() - 1, "$");
+        saida.remove(saida.size() - 1);
+        
+        for (int i = 0; i < saida.size(); i++) {
+            fita.add(fita.size() - 1, saida.get(i));
+            if (i + 1 < saida.size()) fita.add(fita.size() - 1, "$");
         }
             
         for (int i = 0; i < fita.size(); i++) {
             result = result + fita.get(i);
         }
         
+        return result;
+    }
+    
+    public String codificacao(){
+        String result = "";
+        String codigoParcial = "";
+        for (int i = 0; i < fita.size(); i++) {
+            if (!fita.get(i).equals("!")) {
+                if (fita.get(i).equals("$")) codigoParcial = codigoParcial + "2";
+                else if (fita.get(i).equals("#")) codigoParcial = codigoParcial + "3";
+                else codigoParcial = codigoParcial + (Integer.toBinaryString(Integer.parseInt(fita.get(i))));
+            }
+        }
+        
+        char[] arrayCodigoParcial = codigoParcial.toCharArray();
+        String codigo = "";
+        for (int i = 0;i < arrayCodigoParcial.length;i ++) {
+            if (arrayCodigoParcial[i] == '0') {
+                codigo = codigo + "00";
+            }
+            else if (arrayCodigoParcial[i] == '1') {
+                codigo = codigo + "01";
+            }
+            else if (arrayCodigoParcial[i] == '2') {
+                codigo = codigo + "10";
+            }
+            else if (arrayCodigoParcial[i] == '3') {
+                codigo = codigo + "11";
+            }
+        }
+        
+        result  = codigo;
+
         return result;
     }
 

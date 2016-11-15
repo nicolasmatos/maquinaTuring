@@ -214,7 +214,7 @@ public class FormTuring extends javax.swing.JFrame {
         jtxaResultado.setText("");
         MaquinaTuring mt  = new MaquinaTuring(jtxtEstados.getText(), jtxtAlfabetoMt.getText(), jtxtAlfabetoFt.getText(), jtxtRegras.getText(), jtxtEntrada.getText());
         mt.setEstadoAtual(jtxtEstadoInicial.getText());
-        jtxaResultado.setText(mt.verificacao());
+        jtxaResultado.setText(mt.verificacao() + "\nCodigo da maquina:\n" + mt.codificacao());
         
     }//GEN-LAST:event_jbtExecutarActionPerformed
 
