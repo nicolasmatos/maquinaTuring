@@ -135,15 +135,19 @@ public class MaquinaTuring {
     }
     
     public String converterExecucao(String estadoAnt, String leitura, String escrita, String estadoAtual, String direcao) {
-        String result = "";
-        result = "(" + estados.get(Integer.parseInt(estadoAnt) - 1) + ", " + alfabetoFt.get(Integer.parseInt(leitura) - 1) + ")->(" + alfabetoFt.get(Integer.parseInt(escrita) - 1) + ", " + estados.get(Integer.parseInt(estadoAtual) - 1) + ", ";
         
-        if (direcao.equals("1"))
-            result = result + "L)";
-        else if (direcao.equals("2"))
-            result = result + "R)";
-        else
-            result = result + "H)";
+        String result = "";
+        
+        if (!leitura.equals("!") && !escrita.equals("!")) {
+            result = "(" + estados.get(Integer.parseInt(estadoAnt) - 1) + ", " + alfabetoFt.get(Integer.parseInt(leitura) - 1) + ")->(" + alfabetoFt.get(Integer.parseInt(escrita) - 1) + ", " + estados.get(Integer.parseInt(estadoAtual) - 1) + ", ";
+        
+            if (direcao.equals("1"))
+                result = result + "L)";
+            else if (direcao.equals("2"))
+                result = result + "R)";
+            else
+                result = result + "H)";
+        }
         
         return result;
     }
@@ -194,10 +198,6 @@ public class MaquinaTuring {
                         }
                         
                         if (fita.get(j + 8).equals("3")) {
-                            if (saida.get(x).equals("!")) {
-                                System.out.println("Ultima");
-                            }
-                            
                             j = fita.size();
                             x = saida.size();
                         }
