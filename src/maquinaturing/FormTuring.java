@@ -96,15 +96,15 @@ public class FormTuring extends javax.swing.JFrame {
 
         lblTransicoes.setText("Estados");
 
-        jtxtAlfabetoMt.setText("a,b,c");
+        jtxtAlfabetoMt.setText("a,b");
         jtxtAlfabetoMt.setToolTipText("");
 
-        jtxtAlfabetoFt.setText("a,b,c,x");
+        jtxtAlfabetoFt.setText("a,b,x,y");
         jtxtAlfabetoFt.setToolTipText("");
 
         lblEntrada.setText("Regras");
 
-        jtxtEstados.setText("q0,q1,q2");
+        jtxtEstados.setText("q0,q1,q2,q3,q4");
         jtxtEstados.setToolTipText("");
 
         jtxtRegras.setText("q0/a/b/q1/R,q1/b/c/q2/R,q2/c/a/q0/H");
@@ -124,7 +124,7 @@ public class FormTuring extends javax.swing.JFrame {
 
         jLabel3.setText("Entrada");
 
-        jtxtEntrada.setText("a/b/c");
+        jtxtEntrada.setText("a/a/a/a/a/a/b/b/b/b/b/b");
         jtxtEntrada.setToolTipText("");
 
         jLabel4.setText("Estado Inicial");
@@ -214,7 +214,7 @@ public class FormTuring extends javax.swing.JFrame {
         jtxaResultado.setText("");
         MaquinaTuring mt  = new MaquinaTuring(jtxtEstados.getText(), jtxtAlfabetoMt.getText(), jtxtAlfabetoFt.getText(), jtxtRegras.getText(), jtxtEntrada.getText());
         mt.setEstadoAtual(jtxtEstadoInicial.getText());
-        jtxaResultado.setText(mt.verificacao() + "\nCodigo da maquina:\n" + mt.codificacao());
+        jtxaResultado.setText(mt.verificacao());
         
     }//GEN-LAST:event_jbtExecutarActionPerformed
 

@@ -170,85 +170,105 @@ public class MaquinaTuring {
         saida = (ArrayList<String>) entrada.clone();
         saida.add("!");
         
-        int x = 0, ctrl = 0;
+        int x = 0, ctrl = 0, ctrl2 = 0;
         String estadoAnt = "";
         while (x < saida.size()) {
+            ctrl = 0;
             for (int j = posTrans; j < fita.size(); j+=11) {
                 if (estadoAtual.equals(fita.get(j))) {
                     if (saida.get(x).equals(fita.get(j + 2))) {
+                        ctrl = 1;
                         saida.add(x, fita.get(j + 4));
                         saida.remove(x + 1);
                         estadoAnt = estadoAtual;
                         estadoAtual = fita.get(j + 6);
                         
-                        System.out.println(converterExecucao(estadoAnt, fita.get(j + 2), fita.get(j + 4), estadoAtual, fita.get(j + 8)));
-                        
-                        String palavra = "";
-                        
-                        for(int i = 0; i < saida.size() - 1; i++) {
-                            palavra = palavra + alfabetoFt.get(Integer.parseInt(saida.get(i)) - 1);
-                        }
-                        System.out.println(palavra);
-                        
-                        if (fita.get(j + 8).equals("1")) {
-                            x--;
-                        }
-                        if (fita.get(j + 8).equals("2")) {
-                            x++;
-                        }
-                        
-                        if (fita.get(j + 8).equals("3")) {
+                        if (saida.get(x).equals("!") && !fita.get(j + 8).equals("3")) {
+                            ctrl = 0;
+                            ctrl2 = 1;
                             j = fita.size();
                             x = saida.size();
                         }
-                        
-                        j = fita.size();
+                        else {
+                            System.out.println(converterExecucao(estadoAnt, fita.get(j + 2), fita.get(j + 4), estadoAtual, fita.get(j + 8)));
+
+                            String palavra = "";
+
+                            for(int i = 0; i < saida.size() - 1; i++) {
+                                palavra = palavra + alfabetoFt.get(Integer.parseInt(saida.get(i)) - 1);
+                            }
+                            System.out.println(palavra);
+
+                            if (fita.get(j + 8).equals("1")) {
+                                x--;
+                            }
+                            if (fita.get(j + 8).equals("2")) {
+                                x++;
+                            }
+
+                            if (fita.get(j + 8).equals("3")) {
+                                j = fita.size();
+                                x = saida.size();
+                            }
+
+                            j = fita.size();
+                        }
                     }
                 }
             }
+            if (ctrl == 0) {
+                x = saida.size();
+            }
         }
         
-        fita.add(fita.size() - 1, "#");
+        if (ctrl != 0) {
+            fita.add(fita.size() - 1, "#");
         
-        saida.remove(saida.size() - 1);
-        
-        for (int i = 0; i < saida.size(); i++) {
-            fita.add(fita.size() - 1, saida.get(i));
-            if (i + 1 < saida.size()) fita.add(fita.size() - 1, "$");
+            saida.remove(saida.size() - 1);
+
+            for (int i = 0; i < saida.size(); i++) {
+                fita.add(fita.size() - 1, saida.get(i));
+                if (i + 1 < saida.size()) fita.add(fita.size() - 1, "$");
+            }
+
+            for (int i = 0; i < fita.size(); i++) {
+                result = result + fita.get(i);
+            }
+            result = result + "\nCodigo da maquina:\n" + codificacao(ctrl);
         }
-            
-        for (int i = 0; i < fita.size(); i++) {
-            result = result + fita.get(i);
-        }
+        else if (ctrl2 != 0) result = "Não existe HALT para ultima leitura!";
+        else result = "Entrada inválida!";
         
         return result;
     }
     
-    public String codificacao(){
+    public String codificacao(int ctrl){
         String result = "";
         String codigoParcial = "";
-        for (int i = 0; i < fita.size(); i++) {
-            if (!fita.get(i).equals("!")) {
-                if (fita.get(i).equals("$")) codigoParcial = codigoParcial + "2";
-                else if (fita.get(i).equals("#")) codigoParcial = codigoParcial + "3";
-                else codigoParcial = codigoParcial + (Integer.toBinaryString(Integer.parseInt(fita.get(i))));
-            }
-        }
-        
-        char[] arrayCodigoParcial = codigoParcial.toCharArray();
         String codigo = "";
-        for (int i = 0;i < arrayCodigoParcial.length;i ++) {
-            if (arrayCodigoParcial[i] == '0') {
-                codigo = codigo + "00";
+        if (ctrl != 0) {
+            for (int i = 0; i < fita.size(); i++) {
+                if (!fita.get(i).equals("!")) {
+                    if (fita.get(i).equals("$")) codigoParcial = codigoParcial + "2";
+                    else if (fita.get(i).equals("#")) codigoParcial = codigoParcial + "3";
+                    else codigoParcial = codigoParcial + (Integer.toBinaryString(Integer.parseInt(fita.get(i))));
+                }
             }
-            else if (arrayCodigoParcial[i] == '1') {
-                codigo = codigo + "01";
-            }
-            else if (arrayCodigoParcial[i] == '2') {
-                codigo = codigo + "10";
-            }
-            else if (arrayCodigoParcial[i] == '3') {
-                codigo = codigo + "11";
+
+            char[] arrayCodigoParcial = codigoParcial.toCharArray();
+            for (int i = 0;i < arrayCodigoParcial.length;i ++) {
+                if (arrayCodigoParcial[i] == '0') {
+                    codigo = codigo + "00";
+                }
+                else if (arrayCodigoParcial[i] == '1') {
+                    codigo = codigo + "01";
+                }
+                else if (arrayCodigoParcial[i] == '2') {
+                    codigo = codigo + "10";
+                }
+                else if (arrayCodigoParcial[i] == '3') {
+                    codigo = codigo + "11";
+                }
             }
         }
         
