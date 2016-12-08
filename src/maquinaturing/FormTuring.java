@@ -96,15 +96,15 @@ public class FormTuring extends javax.swing.JFrame {
 
         lblTransicoes.setText("Estados");
 
-        jtxtAlfabetoMt.setText("a,b");
+        jtxtAlfabetoMt.setText("a,b,c");
         jtxtAlfabetoMt.setToolTipText("");
 
-        jtxtAlfabetoFt.setText("a,b,x,y");
+        jtxtAlfabetoFt.setText("a,b,c,x,y,z");
         jtxtAlfabetoFt.setToolTipText("");
 
         lblEntrada.setText("Regras");
 
-        jtxtEstados.setText("q0,q1,q2,q3,q4");
+        jtxtEstados.setText("q0,q1,q2,q3,q4,q5,q6");
         jtxtEstados.setToolTipText("");
 
         jtxtRegras.setText("q0/a/b/q1/R,q1/b/c/q2/R,q2/c/a/q0/H");
@@ -124,7 +124,7 @@ public class FormTuring extends javax.swing.JFrame {
 
         jLabel3.setText("Entrada");
 
-        jtxtEntrada.setText("a/a/a/a/a/a/b/b/b/b/b/b");
+        jtxtEntrada.setText("a/a/b/b/c/c");
         jtxtEntrada.setToolTipText("");
 
         jLabel4.setText("Estado Inicial");

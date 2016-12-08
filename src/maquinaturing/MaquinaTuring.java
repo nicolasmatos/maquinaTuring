@@ -140,14 +140,16 @@ public class MaquinaTuring {
         
         if (!leitura.equals("!") && !escrita.equals("!")) {
             result = "(" + estados.get(Integer.parseInt(estadoAnt) - 1) + ", " + alfabetoFt.get(Integer.parseInt(leitura) - 1) + ")->(" + alfabetoFt.get(Integer.parseInt(escrita) - 1) + ", " + estados.get(Integer.parseInt(estadoAtual) - 1) + ", ";
-        
-            if (direcao.equals("1"))
-                result = result + "L)";
-            else if (direcao.equals("2"))
-                result = result + "R)";
-            else
-                result = result + "H)";
         }
+        else {
+            result = "(" + estados.get(Integer.parseInt(estadoAnt) - 1) + ", !)->(!, " + estados.get(Integer.parseInt(estadoAtual) - 1) + ", ";
+        }
+        if (direcao.equals("1"))
+            result = result + "L)";
+        else if (direcao.equals("2"))
+            result = result + "R)";
+        else
+            result = result + "H)";
         
         return result;
     }
@@ -168,9 +170,10 @@ public class MaquinaTuring {
         }
         
         saida = (ArrayList<String>) entrada.clone();
+        saida.add(0, "!");
         saida.add("!");
         
-        int x = 0, ctrl = 0, ctrl2 = 0;
+        int x = 1, ctrl = 0, ctrl2 = 0;
         String estadoAnt = "";
         while (x < saida.size()) {
             ctrl = 0;
@@ -183,36 +186,40 @@ public class MaquinaTuring {
                         estadoAnt = estadoAtual;
                         estadoAtual = fita.get(j + 6);
                         
+                        /*
                         if (saida.get(x).equals("!") && !fita.get(j + 8).equals("3")) {
+                            saida.add("!");
                             ctrl = 0;
                             ctrl2 = 1;
                             j = fita.size();
                             x = saida.size();
-                        }
-                        else {
-                            System.out.println(converterExecucao(estadoAnt, fita.get(j + 2), fita.get(j + 4), estadoAtual, fita.get(j + 8)));
+                        }*/
+                        
+                        System.out.println(converterExecucao(estadoAnt, fita.get(j + 2), fita.get(j + 4), estadoAtual, fita.get(j + 8)));
 
-                            String palavra = "";
+                        String palavra = "";
 
-                            for(int i = 0; i < saida.size() - 1; i++) {
+                        for(int i = 0; i < saida.size() - 1; i++) {
+                            if (!saida.get(i).equals("!")) {
                                 palavra = palavra + alfabetoFt.get(Integer.parseInt(saida.get(i)) - 1);
                             }
-                            System.out.println(palavra);
-
-                            if (fita.get(j + 8).equals("1")) {
-                                x--;
-                            }
-                            if (fita.get(j + 8).equals("2")) {
-                                x++;
-                            }
-
-                            if (fita.get(j + 8).equals("3")) {
-                                j = fita.size();
-                                x = saida.size();
-                            }
-
-                            j = fita.size();
                         }
+                        System.out.println(palavra);
+
+                        if (fita.get(j + 8).equals("1")) {
+                            x--;
+                        }
+                        if (fita.get(j + 8).equals("2")) {
+                            x++;
+                        }
+
+                        if (fita.get(j + 8).equals("3")) {
+                            j = fita.size();
+                            x = saida.size();
+                        }
+
+                        j = fita.size();
+                        
                     }
                 }
             }
@@ -225,6 +232,7 @@ public class MaquinaTuring {
             fita.add(fita.size() - 1, "#");
         
             saida.remove(saida.size() - 1);
+            saida.remove(0);
 
             for (int i = 0; i < saida.size(); i++) {
                 fita.add(fita.size() - 1, saida.get(i));
@@ -236,7 +244,7 @@ public class MaquinaTuring {
             }
             result = result + "\nCodigo da maquina:\n" + codificacao(ctrl);
         }
-        else if (ctrl2 != 0) result = "Não existe HALT para ultima leitura!";
+        //else if (ctrl2 != 0) result = "Não existe HALT para ultima leitura!";
         else result = "Entrada inválida!";
         
         return result;

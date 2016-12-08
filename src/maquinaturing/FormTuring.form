@@ -188,13 +188,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtAlfabetoMt">
       <Properties>
-        <Property name="text" type="java.lang.String" value="a,b"/>
+        <Property name="text" type="java.lang.String" value="a,b,c"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtAlfabetoFt">
       <Properties>
-        <Property name="text" type="java.lang.String" value="a,b,x,y"/>
+        <Property name="text" type="java.lang.String" value="a,b,c,x,y,z"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
@@ -205,7 +205,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtEstados">
       <Properties>
-        <Property name="text" type="java.lang.String" value="q0,q1,q2,q3,q4"/>
+        <Property name="text" type="java.lang.String" value="q0,q1,q2,q3,q4,q5,q6"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
@@ -248,7 +248,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtEntrada">
       <Properties>
-        <Property name="text" type="java.lang.String" value="a/a/a/a/a/a/b/b/b/b/b/b"/>
+        <Property name="text" type="java.lang.String" value="a/a/b/b/c/c"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
